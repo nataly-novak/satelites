@@ -15,7 +15,7 @@ var R0 = 0
 var T0 = 0
 var v0 = 0
 var w0 = 0
-var bodies = [$background/planet]
+@onready var bodies = [$background/planet]
 @export var planet: PackedScene
 var current_sphere
 var result_text = ""
