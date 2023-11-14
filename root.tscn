@@ -1,0 +1,114 @@
+[gd_scene load_steps=5 format=3 uid="uid://b716g1586woba"]
+
+[ext_resource type="Texture2D" uid="uid://d1c5hmfl6on4u" path="res://images/background.png" id="1_l88t5"]
+[ext_resource type="Script" path="res://root.gd" id="1_vv8d1"]
+[ext_resource type="PackedScene" uid="uid://b1nn2rwqr54or" path="res://sphere.tscn" id="3_k1elo"]
+[ext_resource type="Script" path="res://background.gd" id="4_761so"]
+
+[node name="root" type="Node2D"]
+script = ExtResource("1_vv8d1")
+planet = ExtResource("3_k1elo")
+
+[node name="background" type="Sprite2D" parent="."]
+texture = ExtResource("1_l88t5")
+centered = false
+script = ExtResource("4_761so")
+
+[node name="input" type="Node2D" parent="background"]
+position = Vector2(30, 30)
+
+[node name="i1" type="Node2D" parent="background/input"]
+position = Vector2(0, -3)
+
+[node name="label" type="Label" parent="background/input/i1"]
+offset_left = 1.0
+offset_top = -3.0
+offset_right = 42.0
+offset_bottom = 29.0
+text = "T"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="text" type="LineEdit" parent="background/input/i1"]
+offset_left = 41.0
+offset_top = -7.0
+offset_right = 94.0
+offset_bottom = 30.0
+metadata/_edit_use_anchors_ = true
+
+[node name="timer" type="Node2D" parent="background/input"]
+position = Vector2(0, 297)
+
+[node name="label" type="Label" parent="background/input/timer"]
+offset_left = 1.0
+offset_top = -3.0
+offset_right = 42.0
+offset_bottom = 29.0
+text = "Time"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="text" type="LineEdit" parent="background/input/timer"]
+offset_left = 41.0
+offset_top = -7.0
+offset_right = 94.0
+offset_bottom = 30.0
+text = "0
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="add" type="Button" parent="background/input"]
+offset_left = 3.0
+offset_top = 138.0
+offset_right = 108.0
+offset_bottom = 170.0
+text = "Add
+"
+
+[node name="start" type="Button" parent="background/input"]
+offset_left = 3.0
+offset_top = 176.0
+offset_right = 108.0
+offset_bottom = 208.0
+text = "Start"
+
+[node name="pause" type="Button" parent="background/input"]
+offset_left = 3.0
+offset_top = 214.0
+offset_right = 110.0
+offset_bottom = 246.0
+text = "Pause"
+
+[node name="clear" type="Button" parent="background/input"]
+offset_left = 5.0
+offset_top = 253.0
+offset_right = 112.0
+offset_bottom = 285.0
+text = "Clear"
+metadata/_edit_use_anchors_ = true
+
+[node name="initial" type="ItemList" parent="background/input"]
+offset_left = 8.0
+offset_top = 36.0
+offset_right = 107.0
+offset_bottom = 130.0
+item_count = 3
+item_0/text = "T"
+item_1/text = "R"
+item_2/text = "V"
+
+[node name="results" type="TextEdit" parent="background/input"]
+offset_left = 3.0
+offset_top = 334.0
+offset_right = 114.0
+offset_bottom = 601.0
+
+[node name="planet" parent="background" instance=ExtResource("3_k1elo")]
+position = Vector2(700, 300)
+scale = Vector2(1.8, 1.8)
+
+[connection signal="pressed" from="background/input/add" to="." method="_on_add_pressed"]
+[connection signal="pressed" from="background/input/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="background/input/pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="background/input/clear" to="." method="_on_clear_pressed"]
+[connection signal="item_selected" from="background/input/initial" to="." method="_on_initial_item_selected"]
